@@ -1052,7 +1052,7 @@ class API(ModelView):
             relation.remove(relation_instance)
         elif inst is not None:
             self.session.delete(inst)
-            self.session.commit()
+            #self.session.commit()
             is_deleted = True
         for postprocessor in self.postprocessors['DELETE']:
             postprocessor(is_deleted=is_deleted)
@@ -1137,7 +1137,7 @@ class API(ModelView):
 
             # add the created model to the session
             self.session.add(instance)
-            self.session.commit()
+            #self.session.commit()
             result = self._inst_to_dict(instance)
             primary_key = str(result[primary_key_name(instance)])
 
@@ -1245,7 +1245,7 @@ class API(ModelView):
                     for field, value in data.items():
                         setattr(item, field, value)
                     num_modified += 1
-            self.session.commit()
+            #self.session.commit()
         except self.validation_exceptions as exception:
             current_app.logger.exception(str(exception))
             return self._handle_validation_exception(exception)
